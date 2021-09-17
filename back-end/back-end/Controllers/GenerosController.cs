@@ -16,6 +16,7 @@ namespace PeliculasAPI.Controllers
     [Route("api/generos")]
     [ApiController]
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //NEWA comment
     public class GenerosController : ControllerBase
     {
         private readonly IRepositorio repositorio;
