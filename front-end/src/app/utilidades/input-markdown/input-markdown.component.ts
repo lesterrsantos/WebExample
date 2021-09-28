@@ -26,5 +26,6 @@ export class InputMarkdownComponent implements OnInit {
     var target = event.target as HTMLInputElement
     var texto = target.value
     this.contenidoMarkdown=texto;
+    this.changeMarkdown.emit(texto);
   }
 }

@@ -24,7 +24,7 @@ export class FormularioActoresComponent implements OnInit {
   });
 
   @Output()
-  submit: EventEmitter<actorCreacionDTO> = new EventEmitter<actorCreacionDTO>();
+  OnSubmit: EventEmitter<actorCreacionDTO> = new EventEmitter<actorCreacionDTO>();
 
   @Input()
   modelo: actorDTO = {
@@ -52,7 +52,7 @@ export class FormularioActoresComponent implements OnInit {
   }
 
   onSubmit(){
-    this.submit.emit(this.form.value);
+    this.OnSubmit.emit(this.form.value);
   }
 
   archivoSeleccionado(file: any){
