@@ -1,9 +1,9 @@
 <mat-tab-group>
   <mat-tab label="Editar">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" (change)="inputTextArea($event)">
       <mat-label>{{ placeHolderTextarea }}</mat-label>
       <textarea
-      (input)="inputTextArea($event)"
+      [(ngModel)]="contenidoMarkdown"
         matInput
       ></textarea>
     </mat-form-field>

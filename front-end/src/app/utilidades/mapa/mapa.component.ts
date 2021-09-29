@@ -8,35 +8,40 @@ import { Coordenada } from './coordenada';
   styleUrls: ['./mapa.component.css']
 })
 export class MapaComponent implements OnInit {
-
   @Input()
-  coordenadasIniciales: Coordenada[] = [];  
+  coordenadasIniciales: Coordenada[] = [];
 
   @Output()
-  coordenadaSeleccionada: EventEmitter<Coordenada> = new EventEmitter<Coordenada>();
+  coordenadaSeleccionada: EventEmitter<Coordenada> = new EventEmitter<
+    Coordenada
+  >();
+
+  capas: Marker<any>[] = [];
 
   ngOnInit(): void {
-    this.capas = this.coordenadasIniciales.map(valor => marker([valor.latitud, valor.longitud]));
+    this.capas = this.coordenadasIniciales.map(valor =>
+      marker([valor.latitud, valor.longitud])
+    );
   }
 
   options = {
     layers: [
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '...'
+      })
     ],
     zoom: 14,
     center: latLng(18.482849960148176, -69.93999481201173)
   };
 
-  capas: Marker<any>[] = [];
-
-  manejarClick(event: LeafletMouseEvent){
+  manejarClick(event: LeafletMouseEvent) {
     const latitud = event.latlng.lat;
     const longitud = event.latlng.lng;
-    console.log({latitud, longitud});
+    console.log({ latitud, longitud });
 
     this.capas = [];
     this.capas.push(marker([latitud, longitud]));
-    this.coordenadaSeleccionada.emit({latitud: latitud, longitud: longitud});
+    this.coordenadaSeleccionada.emit({ latitud: latitud, longitud: longitud });
   }
-
 }
